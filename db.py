@@ -60,7 +60,7 @@ class RandomToDoDB:
             connect = sqlite3.connect('RandomToDo.sql')
 
             select_activities = '''
-                SELECT *
+                SELECT activity, type, participants, price, link, key, accessibility
                 FROM random_to_do
                 ORDER BY created_at DESC
                 LIMIT 5
