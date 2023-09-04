@@ -6,6 +6,7 @@ def main():
     parser = argparse.ArgumentParser(description='Manage random activities')
     subparsers = parser.add_subparsers(dest='subcommand', help='Available subcommands')
 
+    # Subcommand: new with agruments
     new_parser = subparsers.add_parser('new', help='Get and save a random activity based on filters')
     new_parser.add_argument('--type', help='Filter by activity type')
     new_parser.add_argument('--participants', type=int, help='Filter by number of participants')
@@ -14,6 +15,7 @@ def main():
     new_parser.add_argument('--accessibility_min', type=float, help='Minimum accessibility filter')
     new_parser.add_argument('--accessibility_max', type=float, help='Maximum accessibility filter')
 
+    # Subcommand: list
     list_parser = subparsers.add_parser('list', help='List of 5 recent activities')
 
     args = parser.parse_args()
@@ -21,6 +23,7 @@ def main():
     db = RandomToDoDB()
 
     if args.subcommand == 'new':
+        # Call the new_activity() method
         kwargs = {
             'type': args.type,
             'participants': args.participants,
@@ -37,6 +40,7 @@ def main():
             print(f'\t {key} - {value}')
 
     elif args.subcommand == 'list':
+        # Call the show_activities() method
         result = db.show_activities()
         i = 1
 
